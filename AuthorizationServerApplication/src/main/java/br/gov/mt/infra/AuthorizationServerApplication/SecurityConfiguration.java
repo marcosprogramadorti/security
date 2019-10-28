@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import br.gov.mt.infra.AuthorizationServerApplication.custom.RefererRedirectionAuthenticationSuccessHandler;
 @Configuration
 @Order(1)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -31,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         	.authorizeRequests()
             .anyRequest().authenticated()
             .and()
+            //.formLogin().permitAll().successHandler(new RefererRedirectionAuthenticationSuccessHandler());
             .formLogin().permitAll();
     }
     @Override
